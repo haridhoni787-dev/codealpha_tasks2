@@ -1,0 +1,19 @@
+<h2>Social Media Feed</h2>
+
+{% for post in posts %}
+  <div>
+    <b>{{ post.user.username }}</b>
+
+    {% if request.user != post.user %}
+      <a href="{% url 'follow' post.user.id %}">
+        👤 Follow / Unfollow
+      </a>
+    {% endif %}
+
+    <p>{{ post.content }}</p>
+
+    <a href="{% url 'like' post.id %}">❤️ Like</a>
+    {{ post.likes.count }} Likes
+  </div>
+  <hr>
+{% endfor %}
